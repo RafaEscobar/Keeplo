@@ -6,12 +6,23 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Resources\Resources\RegisterResource;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
     public function login(LoginRequest $request)
     {
-
+        try {
+            if (Auth::attempt($request->all())) {
+                $user = User::findOrFail(Auth::user()->id);
+                $token = $user->createToken('auth_token')->plainTextToken;
+                return new RegisterResource($user, $token);
+            } else {
+                return response()->json(["message" => "Credenciales incorrectas"], 401);
+            }
+        } catch (\Throwable $th) {
+            return response()->json(['message' => $th->getMessage()], 500);
+        }
     }
 
     public function register(RegisterRequest $request)

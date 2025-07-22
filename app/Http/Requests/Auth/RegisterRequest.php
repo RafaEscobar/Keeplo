@@ -24,7 +24,7 @@ class RegisterRequest extends FormRequest
         return [
             'name' => 'required|string|max:40',
             'last_name' => 'required|string|max:100',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|max:16|min:8'
         ];
     }
@@ -40,6 +40,7 @@ class RegisterRequest extends FormRequest
             'last_name.max' => 'El apellido es demasiado largo.',
             'email.required' => 'El correo electrónico es obligatorio.',
             'email.email' => 'El correo electrónico tiene un formato incorrecto.',
+            'email.unique' => 'El correo electrónico ya tiene una cuenta asociada.',
             'password.required' => 'La contraseña es obligatoria.',
             'password.max' => 'La contraseña debe tener máximo 16 caracteres.',
             'password.min' => 'La contraseña debe tener mínimo 8 caracteres.',
