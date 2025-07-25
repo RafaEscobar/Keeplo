@@ -20,7 +20,7 @@ class VahulResource extends JsonResource
             "description" => $this->description,
             "color" => $this->color,
             "user_id" => $this->user_id,
-            "image" => $this->getMedia('vahuls')->getUrl(),
+            "image" => $this->getFirstMediaUrl('vahuls'),
         ];
     }
 }

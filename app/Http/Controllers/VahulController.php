@@ -24,6 +24,7 @@ class VahulController extends Controller
     {
         try {
             $vahul = Vahul::create($request->validated());
+            $vahul->addMediaFromRequest('image')->toMediaCollection('vahuls');
             return new VahulResource($vahul);
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);

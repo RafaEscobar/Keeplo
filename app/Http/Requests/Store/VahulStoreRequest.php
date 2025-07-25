@@ -26,7 +26,7 @@ class VahulStoreRequest extends FormRequest
             'description' => 'string|max:230',
             'color' => 'string',
             'user_id' => 'required|integer|exists:users,id',
-            'image' => 'image|mimes:jpeg,png,jpg,webp|max:7000'
+            'image' => 'required|image|mimes:jpeg,png,jpg,webp|max:7000'
         ];
     }
 
@@ -42,6 +42,7 @@ class VahulStoreRequest extends FormRequest
             'user_id.required' => 'Falta usuario asociado.',
             'user_id.integer' => 'Formado de usuario asociado incorrecto.',
             'user_id.exists' => 'El usuario no existe.',
+            'image.required' => 'La imagen es obligatoria.',
             'image.image' => 'La imagen tiene un formato incorrecto',
             'image.mimes' => 'Formato de imagen incorrecto.',
             'image.max' => 'Imagen sumamente pesada',
