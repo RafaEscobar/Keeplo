@@ -12,6 +12,12 @@ use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->authorizeResource(Item::class, 'item');
+    }
     public function index(Request $request)
     {
         $requestValidated = $request->validate(['vahul_id' => 'required',], ['vahul_id.required' => 'El vahul asociado es requerido']);
