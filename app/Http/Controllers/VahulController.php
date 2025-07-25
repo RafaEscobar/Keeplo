@@ -44,10 +44,10 @@ class VahulController extends Controller
         }
     }
 
-    public function show()
+    public function show(Vahul $vahul)
     {
         try {
-
+            return new VahulResource($vahul);
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);
         }
