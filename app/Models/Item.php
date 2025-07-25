@@ -10,6 +10,18 @@ class Item extends Model implements HasMedia
 {
     use InteractsWithMedia;
 
+    protected $fillable = [
+        'name',
+        'status',
+        'observation',
+        'vahul_id'
+    ];
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('item_cover')->singleFile();
+    }
+
     public function vahul()
     {
         return $this->belongsTo(Vahul::class);
