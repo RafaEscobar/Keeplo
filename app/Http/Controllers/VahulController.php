@@ -6,14 +6,15 @@ use App\Http\Requests\Store\VahulStoreRequest;
 use App\Http\Resources\Collections\VahulCollection;
 use App\Http\Resources\Resources\VahulResource;
 use App\Models\Vahul;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class VahulController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $vahuls = Auth::user()->vahuls();
+            $vahuls = Auth::user()->vahuls()->paginate($request->input('limit'));
             return new VahulCollection($vahuls);
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);

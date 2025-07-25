@@ -14,10 +14,10 @@ class VahulCollection extends ResourceCollection
             "meta" => [
                 "total" => $this->collection->count(),
                 "links" => [
-                    "first" => $this->url(1),
-                    "last" => $this->url($this->lastPage()),
-                    "prev" => $this->previousPageUrl(),
-                    "next" => $this->nextPageUrl(),
+                    'first' => $this->url(1),
+                    'last' => $this->url($this->lastPage()),
+                    'prev' => $this->previousPageUrl(),
+                    'next' => $this->nextPageUrl(),
                 ]
             ]
         ]);
