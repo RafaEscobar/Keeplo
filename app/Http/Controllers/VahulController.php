@@ -11,6 +11,13 @@ use Illuminate\Http\Request;
 
 class VahulController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->authorizeResource(Vahul::class, 'vahul');
+    }
+
     public function index(Request $request)
     {
         $vahuls = $request->user()
