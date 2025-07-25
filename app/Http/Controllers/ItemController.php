@@ -46,11 +46,12 @@ class ItemController extends Controller
 
     public function show(Item $item)
     {
-
+        return new ItemResource($item);
     }
 
     public function destroy(Item $item)
     {
-
+        $item->delete();
+        return response()->noContent();
     }
 }
