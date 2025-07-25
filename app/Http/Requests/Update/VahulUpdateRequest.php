@@ -34,8 +34,8 @@ class VahulUpdateRequest extends FormRequest
         } else if($method == 'PATCH') {
             $rules = [
                 'name' => 'sometimes|required|string|max:60',
-                'description' => 'sometimes|string|max:230',
-                'color' => 'sometimes|string',
+                'description' => 'string|max:230',
+                'color' => 'string',
                 'user_id' => 'sometimes|required|integer|exists:users,id',
                 'image' => 'sometimes|required|image|mimes:jpeg,png,jpg,webp|max:7000'
             ];

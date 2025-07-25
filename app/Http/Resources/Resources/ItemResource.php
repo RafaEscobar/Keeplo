@@ -17,6 +17,7 @@ class ItemResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'status' => $this->status,
             'observation' => $this->observation,
             'vahul_id' => $this->vahul_id,
             'image' => $this->getFirstMediaUrl('item_cover'),

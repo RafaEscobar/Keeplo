@@ -36,7 +36,12 @@ class ItemController extends Controller
 
     public function update(ItemUpdateRequest $request, Item $item)
     {
-
+        $item->update($request->validated());
+        if ($request->has('image')) {
+            $item->addMediaFromRequest('image')
+                ->toMediaCollection('item_cover');
+        }
+        return new ItemResource($item);
     }
 
     public function show(Item $item)
