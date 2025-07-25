@@ -47,4 +47,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function vahuls()
+    {
+        return $this->hasMany(Vahul::class);
+    }
 }

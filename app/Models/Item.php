@@ -9,5 +9,9 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Item extends Model implements HasMedia
 {
     use InteractsWithMedia;
-    //
+
+    public function vahul()
+    {
+        return $this->belongsTo(Vahul::class);
+    }
 }

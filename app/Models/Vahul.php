@@ -9,4 +9,14 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Vahul extends Model implements HasMedia
 {
     use InteractsWithMedia;
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function items()
+    {
+        return $this->hasMany(Item::class);
+    }
 }
