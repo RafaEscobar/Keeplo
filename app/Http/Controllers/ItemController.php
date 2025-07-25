@@ -15,7 +15,8 @@ class ItemController extends Controller
     public function index(Request $request)
     {
         $requestValidated = $request->validate(['vahul_id' => 'required',], ['vahul_id.required' => 'El vahul asociado es requerido']);
-        $items = Item::where('vahul_id', $requestValidated['vahul_id'])->paginate($request->input('limit'));
+        $items = Item::where('vahul_id', $requestValidated['vahul_id'])
+                    ->paginate($request->input('limit'));
         return new ItemCollection($items);
     }
 
@@ -23,7 +24,10 @@ class ItemController extends Controller
     {
         $vahul = Vahul::find($request->input('vahul_id'));
         if ($vahul) {
-            $item = $vahul->items()->create($request->validated());
+            $item = $vahul->items()
+                        ->create($request->validated());
+            $item->addMediaFromRequest('image')
+                ->toMediaCollection('item_cover');
             return new ItemResource($item);
         } else {
             return response()->json(["message" => "Vahul asociado no encontrado"]);
