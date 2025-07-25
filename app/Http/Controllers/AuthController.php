@@ -38,6 +38,11 @@ class AuthController extends Controller
 
     public function logout()
     {
-
+        try {
+            Auth::user()->tokens()->delete();
+            return response()->json(["message" => "Sessión cerrada"]);
+        } catch (\Throwable $th) {
+            return response()->json(["message" => $th->getMessage()], 500);
+        }
     }
 }
