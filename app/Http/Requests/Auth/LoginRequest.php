@@ -11,7 +11,7 @@ class LoginRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,19 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'email' => 'required|email',
+            'password' => 'required|max:16|min:8'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.email' => 'El correo electrónico tiene un formato incorrecto.',
+            'password.required' => 'La contraseña es obligatoria.',
+            'password.max' => 'La contraseña debe tener máximo 16 caracteres.',
+            'password.min' => 'La contraseña debe tener mínimo 8 caracteres.',
         ];
     }
 }

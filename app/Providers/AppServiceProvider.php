@@ -2,11 +2,16 @@
 
 namespace App\Providers;
 
+use App\Models\Vahul;
+use App\Policies\VahulPolicy;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+    protected $policies = [
+        Vahul::class => VahulPolicy::class,
+    ];
     /**
      * Register any application services.
      */
