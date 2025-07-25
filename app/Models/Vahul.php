@@ -17,6 +17,11 @@ class Vahul extends Model implements HasMedia
         'user_id'
     ];
 
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('cover_vahul')->singleFile();
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

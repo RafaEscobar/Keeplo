@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Store\VahulStoreRequest;
+use App\Http\Requests\Update\VahulUpdateRequest;
 use App\Http\Resources\Collections\VahulCollection;
 use App\Http\Resources\Resources\VahulResource;
 use App\Models\Vahul;
@@ -25,17 +26,19 @@ class VahulController extends Controller
     {
         try {
             $vahul = Vahul::create($request->validated());
-            $vahul->addMediaFromRequest('image')->toMediaCollection('vahuls');
+            $vahul->addMediaFromRequest('image')->toMediaCollection('cover_vahul');
             return new VahulResource($vahul);
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);
         }
     }
 
-    public function update()
+    public function update(VahulUpdateRequest $request, Vahul $vahul)
     {
         try {
-
+            $vahul->update($request->validated());
+            $vahul->addMediaFromRequest('image')->toMediaCollection('cover_vahul');
+            return new VahulResource($vahul);
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], 500);
         }
