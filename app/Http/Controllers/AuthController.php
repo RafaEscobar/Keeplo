@@ -45,4 +45,9 @@ class AuthController extends Controller
             return response()->json(["message" => $th->getMessage()], 500);
         }
     }
+
+    public function checkAuthenticated()
+    {
+        return response()->noContent();
+    }
 }
