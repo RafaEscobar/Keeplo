@@ -48,6 +48,7 @@ class AuthController extends Controller
 
     public function checkAuthenticated()
     {
-        return response()->noContent();
+        $user = User::findOrFail(Auth::user()->id);
+        return new RegisterResource($user);
     }
 }
