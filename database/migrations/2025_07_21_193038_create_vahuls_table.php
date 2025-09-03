@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('vahuls', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->string('color');
             $table->foreignIdFor(User::class)
                 ->constrained('users')
