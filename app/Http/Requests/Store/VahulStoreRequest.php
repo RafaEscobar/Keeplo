@@ -26,7 +26,7 @@ class VahulStoreRequest extends FormRequest
             'description' => 'string|max:230',
             'color' => 'string',
             'user_id' => 'required|integer|exists:users,id',
-            'image' => 'required|image|mimes:jpeg,png,jpg,webp|max:7000'
+            'image' => 'required|image|mimes:jpeg,png,jpg,webp|max:10000'
         ];
     }
 
