@@ -22,7 +22,7 @@ class VahulController extends Controller
     {
         $vahuls = $request->user()
                         ->vahuls()
-                        ->orderBy('created_at', 'desc')
+                        ->orderBy('created_at', $request->input('order') ?? 'desc')
                         ->paginate($request->input('limit'));
 
         return new VahulCollection($vahuls);
