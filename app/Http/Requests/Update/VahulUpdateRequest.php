@@ -27,7 +27,6 @@ class VahulUpdateRequest extends FormRequest
             $rules = [
                 'name' => 'required|string|max:60',
                 'description' => 'string|max:230',
-                'color' => 'string',
                 'user_id' => 'required|integer|exists:users,id',
                 'image' => 'required|image|mimes:jpeg,png,jpg,webp|max:7000'
             ];
@@ -35,7 +34,6 @@ class VahulUpdateRequest extends FormRequest
             $rules = [
                 'name' => 'sometimes|required|string|max:60',
                 'description' => 'string|max:230',
-                'color' => 'string',
                 'user_id' => 'sometimes|required|integer|exists:users,id',
                 'image' => 'sometimes|required|image|mimes:jpeg,png,jpg,webp|max:7000'
             ];
@@ -51,7 +49,6 @@ class VahulUpdateRequest extends FormRequest
             'name.max' => 'El nombre es demasiado largo.',
             'description.string' => 'La descripción tiene formato incorrecto.',
             'description.max' => 'La descripción es demasiado larga.',
-            'color.string' => 'El color tiene un formato incorrecto.',
             'user_id.required' => 'Falta usuario asociado.',
             'user_id.integer' => 'Formado de usuario asociado incorrecto.',
             'user_id.exists' => 'El usuario no existe.',

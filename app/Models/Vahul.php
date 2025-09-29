@@ -13,7 +13,6 @@ class Vahul extends Model implements HasMedia
     protected $fillable = [
         'name',
         'description',
-        'color',
         'user_id'
     ];
 
