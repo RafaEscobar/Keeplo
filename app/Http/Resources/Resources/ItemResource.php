@@ -20,6 +20,7 @@ class ItemResource extends JsonResource
             'status' => $this->status,
             'observation' => $this->observation,
             'vahul_id' => $this->vahul_id,
+            'amount' => $this->amount,
             'image' => $this->getFirstMediaUrl('item_cover'),
         ];
     }
