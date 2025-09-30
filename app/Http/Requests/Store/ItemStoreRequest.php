@@ -25,8 +25,9 @@ class ItemStoreRequest extends FormRequest
             'name' => 'required|string|max:60',
             'status' => 'integer|in:0,1,2',
             'image' => 'required|image|mimes:jpeg,png,jpg,webp|max:7000',
-            'observation' => 'string|max:230',
-            'vahul_id' => 'required|integer|exists:vahuls,id'
+            'observation' => 'string|max:230|nullable',
+            'vahul_id' => 'required|integer|exists:vahuls,id',
+            'amount' => 'integer|nullable'
         ];
     }
 
@@ -47,6 +48,7 @@ class ItemStoreRequest extends FormRequest
             'vahul_id.required' => 'El vahul asociado es obligatorio.',
             'vahul_id.integer' => 'El vahul tiene un formato incorrecto.',
             'vahul_id.exists' => 'El vahul asociado no existe.',
+            'amount.integer' => 'La cantidad tiene el formato incorrecto.'
         ];
     }
 }

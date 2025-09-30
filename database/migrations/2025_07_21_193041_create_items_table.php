@@ -16,7 +16,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->tinyInteger('status')->default(0);
-            $table->string('observation');
+            $table->string('observation')->nullable();
+            $table->integer('amount')->default(1);
             $table->foreignIdFor(Vahul::class)
                 ->constrained('vahuls')
                 ->cascadeOnDelete();

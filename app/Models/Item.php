@@ -14,7 +14,8 @@ class Item extends Model implements HasMedia
         'name',
         'status',
         'observation',
-        'vahul_id'
+        'vahul_id',
+        'amount'
     ];
 
     public function registerMediaCollections(): void
