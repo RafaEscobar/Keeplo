@@ -1,0 +1,61 @@
+<?php
+
+namespace App\Http\Requests\Update;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class VahulUpdateRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     */
+    public function rules(): array
+    {
+        $method = $this->method();
+        $rules = [];
+        if ($method == 'PUT') {
+            $rules = [
+                'name' => 'required|string|max:60',
+                'description' => 'string|max:230',
+                'user_id' => 'required|integer|exists:users,id',
+                'image' => 'required|image|mimes:jpeg,png,jpg,webp|max:7000'
+            ];
+        } else if($method == 'PATCH') {
+            $rules = [
+                'name' => 'sometimes|required|string|max:60',
+                'description' => 'string|max:230',
+                'user_id' => 'sometimes|required|integer|exists:users,id',
+                'image' => 'sometimes|required|image|mimes:jpeg,png,jpg,webp|max:7000'
+            ];
+        }
+        return $rules;
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'El nombre es obligatorio.',
+            'name.string' => 'El nombre tiene formato incorrecto.',
+            'name.max' => 'El nombre es demasiado largo.',
+            'description.string' => 'La descripción tiene formato incorrecto.',
+            'description.max' => 'La descripción es demasiado larga.',
+            'user_id.required' => 'Falta usuario asociado.',
+            'user_id.integer' => 'Formado de usuario asociado incorrecto.',
+            'user_id.exists' => 'El usuario no existe.',
+            'image.required' => 'La imagen es obligatoria.',
+            'image.image' => 'La imagen tiene un formato incorrecto',
+            'image.mimes' => 'Formato de imagen incorrecto.',
+            'image.max' => 'Imagen sumamente pesada',
+        ];
+    }
+}
