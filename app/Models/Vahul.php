@@ -16,6 +16,10 @@ class Vahul extends Model implements HasMedia
         'user_id'
     ];
 
+    protected $casts = [
+        'user_id' => 'integer'
+    ];
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('cover_vahul')->singleFile();

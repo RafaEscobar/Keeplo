@@ -18,6 +18,10 @@ class Item extends Model implements HasMedia
         'amount'
     ];
 
+    protected $casts = [
+        'vahul_id' => 'integer'
+    ];
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('item_cover')->singleFile();
