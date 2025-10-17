@@ -22,6 +22,9 @@ class ItemController extends Controller
     {
         $requestValidated = $request->validate(['vahul_id' => 'required',], ['vahul_id.required' => 'El vahul asociado es requerido']);
         $items = Item::where('vahul_id', $requestValidated['vahul_id'])
+                    ->when($request->has('search'), function($q) use ($request){
+                        $q->where('name', 'like', '%'.$request->search.'%');
+                    })
                     ->orderBy('created_at', $request->input('order') ?? 'desc')
                     ->paginate($request->input('limit'));
         return new ItemCollection($items);

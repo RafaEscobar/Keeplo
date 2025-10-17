@@ -22,6 +22,9 @@ class VahulController extends Controller
     {
         $vahuls = $request->user()
                         ->vahuls()
+                        ->when($request->has('search'), function($q) use ($request){
+                            $q->where('name', 'like', '%'.$request->search.'%');
+                        })
                         ->orderBy('created_at', $request->input('order') ?? 'desc')
                         ->paginate($request->input('limit'));
 
