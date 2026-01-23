@@ -71,7 +71,7 @@ class ItemController extends Controller
         if ($vahul != null) {
             $maxId = $vahul->items()->max('id');
             if ($maxId != null) {
-                $item = Item::where('id', '>=', rand(1, $maxId))->first();
+                $item = $vahul->items()->where('id', '>=', rand(1, $maxId))->first();
                 return new ItemResource($item);
             }
         }
