@@ -64,4 +64,17 @@ class ItemController extends Controller
         $item->delete();
         return response()->noContent();
     }
+
+    public function getRandomItem(Request $request)
+    {
+        $vahul = Vahul::find($request->input('vahul_id'));
+        if ($vahul != null) {
+            $maxId = $vahul->items()->max('id');
+            if ($maxId != null) {
+                $item = Item::where('id', '>=', rand(1, $maxId))->first();
+                return new ItemResource($item);
+            }
+        }
+        return response()->noContent();
+    }
 }

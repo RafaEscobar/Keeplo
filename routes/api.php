@@ -15,4 +15,5 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::apiResource('vahuls', VahulController::class);
     Route::apiResource('items', ItemController::class);
     Route::get('/me', [AuthController::class, 'checkAuthenticated']);
+    Route::get('/random-item', [ItemController::class, 'getRandomItem']);
 });
