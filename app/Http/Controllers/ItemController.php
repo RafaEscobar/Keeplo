@@ -69,11 +69,10 @@ class ItemController extends Controller
     {
         $vahul = Vahul::find($request->input('vahul_id'));
         if ($vahul != null) {
-            $maxId = $vahul->items()->max('id');
-            if ($maxId != null) {
-                $item = $vahul->items()->where('id', '>=', rand(1, $maxId))->first();
-                return new ItemResource($item);
-            }
+            $item = $vahul->items()
+                ->inRandomOrder()
+                ->first();
+            return new ItemResource($item);
         }
         return response()->noContent();
     }
